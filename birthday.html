@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>黄警莹18岁生日庆典</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffbdbd);
+            overflow: hidden;
+            font-family: 'Microsoft YaHei', cursive;
+            position: relative;
+        }
+
+        /* 主标题样式 */
+        .main-title {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 3px 3px 0px #ff4757;
+            text-align: center;
+            margin: 5% auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* 播放器容器 */
+        .music-box {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+        }
+
+        /* 动态爱心效果 */
+        .hearts span {
+            position: absolute;
+            color: #ff4757;
+            font-size: 20px;
+            animation: heartMove 5s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes heartMove {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态爱心背景 -->
+    <div class="hearts"></div>
+
+    <!-- 主标题 -->
+    <h1 class="main-title">🎉热烈庆祝黄警莹十八周岁🎉</h1>
+
+    <!-- 音乐播放器 -->
+    <div class="music-box">
+        <audio id="musicPlayer" controls>
+            <source src="tiantian.mp3" type="audio/mpeg">
+            您的浏览器不支持音频播放
+        </audio>
+    </div>
+
+    <script>
+        // 生成动态爱心
+        function createHearts() {
+            const heart = document.createElement('span');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + '%';
+            document.querySelector('.hearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHearts, 300);
+
+        // 自动播放处理（需用户交互后播放）
+        document.body.addEventListener('click', () => {
+            const player = document.getElementById('musicPlayer');
+            if(player.paused) player.play();
+        });
+    </script>
+</body>
+</html>
